@@ -1,0 +1,61 @@
+.catalog:
+  name: "WebLogic11g"
+  version: "2.6"
+  description: "icshop  system"
+  questions:
+    - variable: "weblbport"
+      description: "The Port Number of the Web Loadbalance"
+      label: "the port number of the Web loadbalance"
+      required: true
+      default: 8008
+      type: "int"
+    - variable: "applbport"
+      description: "The Port Number of the App Loadbalance"
+      label: "the port number of the App loadbalance"
+      required: true
+      default: 8001
+      type: "int"
+    - variable: "webscale"
+      description: "Number of icshopweb Node"
+      label: "number of icshopweb node"
+      required: true
+      default: 2
+      type: "int"
+    - variable: "appscale"
+      description: "Number of icshopapp Node"
+      label: "number of icshopapp node"
+      required: true
+      default: 2
+      type: "int"   
+weblb:
+  scale: 1
+  load_balancer_config:
+    lb_cookie_stickiness_policy:
+      cookie: webcookie
+      domain: ''
+      mode: insert
+    haproxy_config: {}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+icshopweb:
+  scale: ${webscale}
+icshopapp:
+  scale: ${appscale}
+applb:
+  scale: 1
+  load_balancer_config:
+    lb_cookie_stickiness_policy:
+      cookie: appcookie
+      domain: ''
+      mode: insert
+    haproxy_config: {}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000

@@ -1,0 +1,34 @@
+weblb:
+  ports:
+  - ${weblbport}:8001
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - icshopweb:icshopweb
+  stdin_open: true
+icshopweb:
+  log_driver: ''
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  log_opt: {}
+  image: 192.168.100.215:5002/weblogic/icshopweb
+  links:
+  - applb:applb
+  stdin_open: true
+icshopapp:
+  log_driver: ''
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  log_opt: {}
+  image: 192.168.100.215:5002/weblogic/icshopapp
+  stdin_open: true
+applb:
+  ports:
+  - ${applbport}:8001
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - icshopapp:icshopapp
+  stdin_open: true
