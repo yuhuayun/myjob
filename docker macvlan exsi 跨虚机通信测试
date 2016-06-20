@@ -1,0 +1,129 @@
+本测试基于VMWARE EXSI
+
+搭建环境
+
+Vmware exsi, Ubuntu 15.10 内核4.2.0，docker 1.11.0-dev
+
+Exsi上运行两套ubuntu主机系统,网卡混杂模式开启全部允许.
+
+主机上配置的eth0网口或者创建的vlan网口,均需要开启混杂模式,命令 ip link set eth0 promisc on ip link set eth0.100 promisc on
+
+注意 : 如果不开启混杂模式,会导致macvlan网络无法访问外界,具体在不使用vlan时,表现为无法ping通路由,无法ping通同一网络内其他主机
+
+exsi主机网络配置：
+    登陆vSphere --> 选择虚机所在的主机-->  配置  --> 网络 --> 属性 --> 端口选项下面的业务网络（一般为：VM Network）-->编辑 
+    a.常规--> vlan id （可选） “全部（4095）”
+    b.安全--> 混杂模式(接受)   mac 地址更改（接受)
+
+搭建过程1-不使用vlan
+
+1. 创建docker macvlan网络
+两台主机上 eth0 使用分别为 192.168.17.12/192.168.17.13. 分别在两台主机上使用相同命令 docker network create -d macvlan --subnet=192.168.17.0/24 --gateway=192.168.17.1 -o parent=eth0 -o macvlan_mode=bridge eth0_1 创建eth0_1的macvlan网络.
+
+2. 创建容器
+
+主机1 运行容器 使用命令:
+
+docker run --net=eth0_1 --ip=192.168.17.101 -id --name test101 busybox sh
+
+docker run --net=eth0_1 --ip=192.168.17.102 -id --name test102 busybox sh
+
+主机2 运行容器 使用命令:
+
+docker run --net=eth0_1 --ip=192.168.17.201 -id --name test201 busybox sh
+
+docker run --net=eth0_1 --ip=192.168.17.202 -id --name test202 busybox sh
+
+3. 测试网络
+
+主机1上测试:
+
+运行命令:
+
+docker exec test101 ping 192.168.17.1 ping网关: 通
+
+docker exec test101 ping test102 使用容器名ping本主机容器: 通
+
+docker exec test102 ping 192.168.17.101 ping本主机容器: 通
+
+docker exec test102 ping 192.168.17.13 ping本网络其他主机: 通
+docker exec test102 ping 192.168.17.12 ping本网络本主机: 不通
+
+docker exec test101 ping 192.168.17.201 ping另一主机容器: 通
+
+docker exec test101 ping test201 使用容器名ping另一主机容器: 不通
+
+ping 192.168.17.101 本主机ping本主机容器: 不通
+
+ping 192.168.17.201 本主机ping另一主机容器: 通
+
+主机2上测试获取相同结果.
+
+
+搭建过程2-使用vlan
+
+1. 创建vlan
+
+使用命令vconfig add eth0 100 创建eth0.100的vlan.设置两台主机的vlan ip分别为192.168.100.50/192.168.100.51
+  查看vlan
+  root@macvlan1:~# cat /proc/net/vlan/config 
+    VLAN Dev name    | VLAN ID
+    Name-Type: VLAN_NAME_TYPE_RAW_PLUS_VID_NO_PAD
+    eth0.100     | 100  | eth0
+
+添加eth0.100对应的IP地址：
+vi /etc/network/interfaces
+auto eth0.100
+iface eth0.100 inet static
+address 192.168.100.50    ##另外一台对应51
+netmask 255.255.255.0
+vlan-raw-device eth0
+
+2. 创建docker macvlan网络
+
+分别在两台主机上使用命令 docker network create -d macvlan --subnet=192.168.100.0/24 --gateway=192.168.100.1 -o parent=eth0.100 -o macvlan_mode=bridge 100_1 创建相同的100_1的macvlan网络.
+
+3. 创建容器
+
+主机1 运行容器 使用命令:
+
+docker run --net=100_1 --ip=192.168.100.101 -id --name test100.101 busybox sh
+
+docker run --net=100_1 --ip=192.168.100.102 -id --name test100.102 busybox sh
+
+主机2 运行容器 使用命令:
+
+docker run --net=100_1 --ip=192.168.100.201 -id --name test100.201 busybox sh
+
+docker run --net=100_1 --ip=192.168.100.202 -id --name test100.202 busybox sh
+
+测试网络
+
+主机1上测试:
+
+运行命令:
+
+docker exec test100.101 ping 192.168.100.1 ping网关: 不通
+
+docker exec test100.101 ping 192.168.100.50 ping本地eth0.100地址: 不通
+
+docker exec test100.101 ping 192.168.100.51 ping另一个主机的eth0.100地址:通
+
+docker exec test100.101 ping 192.168.100.102 ping本主机容器: 通
+
+docker exec test100.101 ping 192.168.100.201 ping另一主机容器: 通
+
+docker exec test100.101 ping test100.102 使用容器名ping本主机容器: 通
+
+docker exec test100.101 ping test100.201 使用容器名ping另一主机容器: 不通
+
+docker exec test100.101 ping 192.168.17.13 ping跨网络主机: 不通
+docker exec test100.101 ping 192.168.17.12 ping跨网络主机: 不通
+
+
+ping 192.168.100.101 本主机ping本主机容器: 不通
+
+ping 192.168.100.201 本主机ping另一主机容器: 通
+
+
+
