@@ -20,7 +20,7 @@ gitlab:
   labels:
     io.rancher.container.pull_image: always
   tty: true
-  hostname: gitlab.xdw.com
+  hostname: gitlab.youruncloud.com
   image: 192.168.100.215:5002/weblogic/gitlab-ce
   volumes:
   - /data/gitlab/config:/etc/gitlab
