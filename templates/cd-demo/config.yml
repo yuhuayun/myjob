@@ -1,5 +1,5 @@
-name: Infra-demo    
+name: Yourun Cloud ci-demo flask Web
 description: |
-  (Experimental) gitlab& jenkins
-version: 1.0
-category: Demo
+  Yourun Cloud ci-demo flask Web 
+version: 1.0.0-YourunCloud
+category: Demo 

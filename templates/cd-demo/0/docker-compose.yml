@@ -1,29 +1,21 @@
-jenkins:
-  ports:
-  - 9001:8080/tcp
-  labels:
-    io.rancher.container.pull_image: always
+redis:
+  restart: always
   tty: true
-  image: 192.168.100.215:5002/weblogic/jenkins
-  volumes:
-  - /var/lib/docker/:/var/lib/docker/
-  - /var/run/docker.sock:/var/run/docker.sock
-  - /usr/bin/docker:/usr/bin/docker
-  - /lib64/libdevmapper.so.1.02:/usr/lib/libdevmapper.so.1.02
-  privileged: true
+  image: 192.168.100.215:5002/weblogic/redis
   stdin_open: true
-gitlab:
-  ports:
-  - 9004:443/tcp
-  - 9003:80/tcp
-  - 9002:22/tcp
-  labels:
-    io.rancher.container.pull_image: always
+pyapp:
+  restart: always
   tty: true
-  hostname: gitlab.youruncloud.com
-  image: 192.168.100.215:5002/weblogic/gitlab-ce
-  volumes:
-  - /data/gitlab/config:/etc/gitlab
-  - /data/gitlab/logs:/var/log/gitlab
-  - /data/gitlab/data:/var/opt/gitlab
+  image:  192.168.100.215:5002/weblogic/python-redis-demo:b${Build_Number}
+  links:
+  - 'redis:'
+  stdin_open: true
+pyapplb:
+  ports:
+  - ${Port_Number}:5000
+  restart: always
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - pyapp:pyapp
   stdin_open: true
