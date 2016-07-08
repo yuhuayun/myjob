@@ -18,5 +18,5 @@ autoscale:
   - python
   - /home/autoscale.py
   log_opt: {}
-  image: 121.199.10.99:81/autoscale:v1.0.0
+  image: 192.168.100.215:5002/weblogic/autoscale
   stdin_open: true

@@ -7,19 +7,19 @@
     - variable: "URL"
       label: "Appsoar服务器IP"
       required: true
-      default: 115.29.214.203
+      default: http://192.168.100.170 
       type: "string"
     - variable: "ACCESS_KEY"
       description: "AppSoar API key访问用户名"
       label: "API key用户名"
       required: true
-      default: 64C17B70148DDD5FF767
+      default: 2E57DEA095A3B5ED089A 
       type: "string"
     - variable: "SECRET_KEY"
       description: "AppSoar API访问密码"
       label: "API密码"
       required: true
-      default: bEDJ4ac9HRhWfcbEvYTVSh1QoHsStbXejMNS1s2e
+      default: T9t13ZsizmvZr7LDmCFoDX9bYwDRqAWw8CjR9G2K
       type: "string"
     - variable: "CPU_SCALE_PERCENT"
       description: "触发自动扩容的CPU阈值(%)"

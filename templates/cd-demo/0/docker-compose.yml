@@ -4,7 +4,7 @@ jenkins:
   labels:
     io.rancher.container.pull_image: always
   tty: true
-  image: 121.199.10.99:81/jenkins:1.1
+  image: 192.168.100.215:5002/weblogic/jenkins
   volumes:
   - /var/lib/docker/:/var/lib/docker/
   - /var/run/docker.sock:/var/run/docker.sock
@@ -20,10 +20,10 @@ gitlab:
   labels:
     io.rancher.container.pull_image: always
   tty: true
-  hostname: gitlab.youruncloud.com
-  image: 121.199.10.99:81/gitlab/gitlab-ce
+  hostname: gitlab.xdw.com
+  image: 192.168.100.215:5002/weblogic/gitlab-ce
   volumes:
-  - /srv/gitlab/config:/etc/gitlab
-  - /srv/gitlab/logs:/var/log/gitlab
-  - /srv/gitlab/data:/var/opt/gitlab
+  - /data/gitlab/config:/etc/gitlab
+  - /data/gitlab/logs:/var/log/gitlab
+  - /data/gitlab/data:/var/opt/gitlab
   stdin_open: true
