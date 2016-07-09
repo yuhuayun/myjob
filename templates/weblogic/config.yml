@@ -1,4 +1,4 @@
-me: WebLogic12g
+name: icshop 
 description: |
   Oracle WebLogic 12g with your application deployed.
 version: 2.6
