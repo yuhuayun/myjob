@@ -1,5 +1,5 @@
 .catalog:
-  name: "WebLogic11g"
+  name: "icshop"
   version: "2.6"
   description: "icshop  system"
   questions:

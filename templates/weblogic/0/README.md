@@ -1,11 +1,11 @@
-# Gitlab
+# icshop 
 
 
 ### Info:
 
- This template creater icshop system on top of Rancher. 
+ This template creater icshop system on top of App soar. 
  
- MAINTAINER allen@cloudsoar.com
+ MAINTAINER allen@youruncloud.com
  
 ### Usage:
 
