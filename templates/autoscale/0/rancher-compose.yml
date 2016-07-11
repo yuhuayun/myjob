@@ -7,7 +7,7 @@
     - variable: "URL"
       label: "Appsoar服务器IP"
       required: true
-      default: http://192.168.100.170 
+      default: 192.168.100.170 
       type: "string"
     - variable: "ACCESS_KEY"
       description: "AppSoar API key访问用户名"
