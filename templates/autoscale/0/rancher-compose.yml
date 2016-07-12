@@ -13,13 +13,13 @@
       description: "AppSoar API key访问用户名"
       label: "API key用户名"
       required: true
-      default: E5F1CA566E2680239F9D
+      default: 8D44823F576B7941420E 
       type: "string"
     - variable: "SECRET_KEY"
       description: "AppSoar API访问密码"
       label: "API密码"
       required: true
-      default: z2m9Puc32fHJjnXw7KaaKGrpGodE28PJ4tZjdPvf
+      default: 8XFexZZh5bYBB7AGoaN2es5Bj36apB8YLh6ZzUMz 
       type: "string"
     - variable: "CPU_SCALE_PERCENT"
       description: "触发自动扩容的CPU阈值(%)"
