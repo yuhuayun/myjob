@@ -12,7 +12,7 @@ icshopweb:
     io.rancher.container.pull_image: always
   tty: true
   log_opt: {}
-  image: 192.168.100.215:5002/weblogic/icshopweb
+  image: index.youruncloud.com/huayun.yu/weblogic.icshopweb
   links:
   - applb:applb
   stdin_open: true
@@ -22,7 +22,7 @@ icshopapp:
     io.rancher.container.pull_image: always
   tty: true
   log_opt: {}
-  image: 192.168.100.215:5002/weblogic/icshopapp
+  image: index.youruncloud.com/huayun.yu/weblogic.icshopapp
   stdin_open: true
 applb:
   ports:

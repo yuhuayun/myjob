@@ -1,12 +1,12 @@
 redis:
   restart: always
   tty: true
-  image: 192.168.100.215:5002/weblogic/redis
+  image: index.youruncloud.com/huayun.yu/weblogic.redis
   stdin_open: true
 pyapp:
   restart: always
   tty: true
-  image:  192.168.100.215:5002/weblogic/python-redis-demo:b${Build_Number}
+  image:  index.youruncloud.com/huayun.yu/weblogic.python-redis-demo:b${Build_Number}
   links:
   - 'redis:'
   stdin_open: true

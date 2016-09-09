@@ -4,7 +4,7 @@ jenkins:
   labels:
     io.rancher.container.pull_image: always
   tty: true
-  image: 192.168.100.215:5002/weblogic/jenkins
+  image: index.youruncloud.com/huayun.yu/weblogic.jenkins
   volumes:
   - /var/lib/docker/:/var/lib/docker/
   - /var/run/docker.sock:/var/run/docker.sock
@@ -20,6 +20,6 @@ gitlab:
   labels:
     io.rancher.container.pull_image: always
   tty: true
-  image: 192.168.100.215:5002/weblogic/gitlab-ce
+  image: index.youruncloud.com/huayun.yu/weblogic.gitlab-ce
   stdin_open: true
 
