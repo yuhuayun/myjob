@@ -10,6 +10,7 @@ jenkins:
   - /var/run/docker.sock:/var/run/docker.sock
   - /usr/bin/docker:/usr/bin/docker
   - /lib64/libdevmapper.so.1.02:/usr/lib/libdevmapper.so.1.02
+  - /etc/sysconfig/docker:/etc/sysconfig/docker 
   privileged: true
   stdin_open: true
 gitlab:
