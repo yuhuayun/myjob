@@ -1,0 +1,25 @@
+zabbix-db:
+  environment:
+    MARIADB_PASS: '123456'
+    MARIADB_USER: zabbix
+  tty: true
+  image: ah.youruncloud.com/pub/zabbix-db-mariadb:latest
+  volumes:
+  - /backups:/backups
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true
+zabbix:
+  ports:
+  - 10051:10051/tcp
+  - 80:80/tcp
+  environment:
+    ZS_DBHost: zabbix.db
+    ZS_DBPassword: '123456'
+    ZS_DBUser: zabbix
+  tty: true
+  image: ah.youruncloud.com/pub/zabbix-3.0:latest
+  links:
+  - zabbix-db:zabbix.db
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true

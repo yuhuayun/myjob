@@ -1,0 +1,4 @@
+name: Zabbix
+description: |
+  (Experimental) gitlab& jenkins
+version: v1.0.0
