@@ -1,6 +1,6 @@
 # Zabbix
 
-Zabbix is a free alternative to GitHub
+Free alternative to GitHub
 
 ### 声明：
 
