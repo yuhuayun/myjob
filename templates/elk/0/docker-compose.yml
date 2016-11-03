@@ -1,0 +1,47 @@
+logstash:
+  ports:
+  - ${ELK_LTU_port}:5000/tcp
+  - ${ELK_LTU_port}:5000/udp
+  - ${ELK_LPout_port}:5043/tcp
+  - ${ELK_LPout_port}:5043/udp
+  - ${ELK_LFilebeat_port}:5044/tcp
+  - ${ELK_LFilebeat_port}:5044/udp
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${hostlabel_key}=${hostlabel_value}
+  command: logstash -f /etc/conf/logstash.conf
+  tty: true
+  image: ah.youruncloud.com/pub/logstash:v1.0.0
+  environment:
+    LOGSPOUT: 'ignore'
+  links:
+  - elasticsearch:db
+  volumes:
+  - ${logstash_conf_dir}/conf:/etc/conf
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true
+kibana:
+  ports:
+  - ${ELK_KUI_port}:5601/tcp
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${hostlabel_key}=${hostlabel_value}
+  tty: true
+  image: ah.youruncloud.com/pub/kibana:v1.0.0
+  links:
+  - elasticsearch:elasticsearch
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true
+elasticsearch:
+  ports:
+  - ${ELK_EL_port1}:9200/tcp
+  - ${ELK_EL_port2}:9300/tcp
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${hostlabel_key}=${hostlabel_value}
+  tty: true
+  image: ah.youruncloud.com/pub/elasticsearch:v1.0.0
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true

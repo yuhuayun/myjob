@@ -1,0 +1,8 @@
+name: ELK Stack
+description: |
+  ELK Stack
+version: 1.0.0
+category: Platform
+maintainer: "zhipeng.hui@cloudsoar.com"
+minimum_rancher_version: v1.0.0
+License: 

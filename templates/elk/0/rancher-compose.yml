@@ -1,0 +1,67 @@
+.catalog:
+  name: ELK
+  version: 1.0.0
+  description: "ELK Stack"
+  questions:
+   - variable: "hostlabel_key" 
+     description: "Please input ELK hostlabel-key." 
+     label: "hostlabel_key"
+     required: true
+     default: "hostname"
+     type: "string"
+   - variable: "hostlabel_value" 
+     description: "Please input logstash host value."
+     label: "host label value"
+     required: true
+     default: "host1"
+     type: "string"
+   - variable: "ELK_LTU_port"
+     description: "Please input logstash tcp & udp port."
+     label: "logstash_tcp & udp port"
+     required: true
+     default: 5000
+     type: "int"
+   - variable: "ELK_LPout_port"
+     description: "Please input logspout connect tcp port."
+     label: "logspout connect_tcp port"
+     required: true
+     default: 5043
+     type: "int"
+   - variable: "ELK_LFilebeat_port"
+     description: "Please input filebeat connect tcp port."
+     label: "Filebeat_tcp port"
+     required: true
+     default: 5044
+     type: "int"
+   - variable: "ELK_KUI_port"
+     description: "Please input  UI kibana port."
+     label: "kibana UI port"
+     required: true
+     default: 5601
+     type: "int"
+   - variable: "logstash_conf_dir"
+     description: "Pleace logstash configureation file abs path."
+     label: "configureation path "
+     required: true
+     default: "/logstash"
+     type: "string"
+   - variable: "ELK_EL_port1"
+     description: "Please input elasticsearch port1."
+     label: "elasticsearch_tcp port1"
+     required: true
+     default: 9200
+     type: "int"
+   - variable: "ELK_EL_port2"
+     description: "Please input elasticsearch port2."
+     label: "elasticsearch_tcp port2"
+     required: true
+     default: 9300
+     type: "int"
+
+
+logstash:
+  scale: 1
+kibana:
+  scale: 1
+elasticserch:
+  scale: 1
