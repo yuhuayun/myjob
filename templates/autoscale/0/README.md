@@ -18,7 +18,7 @@
 
 ### 配置：
 
-默认配置如下，配置详细描述请点击<a href="http://www.youruncloud.com/help/99.html" target="_blank">此处</a>。
+默认配置如下，配置详细描述请点击<a href="http://docs.youruncloud.com/#appsoarcatalog/autoscale/readme.html" target="_blank">此处</a>。
 
 ### 使用：
 
@@ -26,4 +26,4 @@
 2.输入配置项中必填信息(或使用默认配置)
 3.点击运行，开始部署
    
-使用详细描述请点击<a href="http://www.youruncloud.com/help/99.html" target="_blank">此处</a>。
+使用详细描述请点击<a href="http://docs.youruncloud.com/#appsoarcatalog/autoscale/readme.html" target="_blank">此处</a>。

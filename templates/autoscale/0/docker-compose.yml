@@ -18,5 +18,5 @@ autoscale:
   - python
   - /home/autoscale.py
   log_opt: {}
-  image: index.youruncloud.com/huayun.yu/weblogic.autoscale:latest
+  image: index.youruncloud.com/catalog/autoscale:v1.0.0
   stdin_open: true
