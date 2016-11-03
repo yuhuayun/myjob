@@ -1,0 +1,56 @@
+zabbix-db:
+  environment:
+    MARIADB_USER: zabbix
+    MARIADB_PASS: '123456'
+  log_driver: ''
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${zabbixS_host}
+  tty: true
+  log_opt: {}
+  image: ah.youruncloud.com/pub/zabbix-db-mariadb:latest
+  volumes:
+  - /backups:/backups
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true
+zabbix-agent:
+  ports:
+  - ${za_port}:10050/tcp
+  environment:
+    ZA_SERVER: ${zabbix_serverip}
+    ZA_HOSTNAME: ${zabbix_agentip}
+  log_driver: ''
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${zabbixC_host}
+  command:
+  - bash
+  - /home/run.sh
+  tty: true
+  log_opt: {}
+  image: ah.youruncloud.com/pub/zabbix-agent:latest
+  volumes:
+  - /:/rootfs
+  - /var/run/docker.sock:/var/run/docker.sock
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true
+zabbix:
+  ports:
+  - ${ui_port}:80/tcp
+  - ${zs_port}:10051/tcp
+  environment:
+    ZS_DBHost: zabbix.db
+    ZS_DBUser: zabbix
+    ZS_DBPassword: '123456'
+  log_driver: ''
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${zabbixS_host}
+  tty: true
+  log_opt: {}
+  image: ah.youruncloud.com/pub/zabbix-3.0:latest
+  links:
+  - zabbix-db:zabbix.db
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+  stdin_open: true

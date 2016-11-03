@@ -1,0 +1,6 @@
+name: zabbix-platform
+description: |
+  This is Zabbix platform, used monitor container CPU mermory and status.
+version: latest
+category: 监控
+maintainer: "有容云"

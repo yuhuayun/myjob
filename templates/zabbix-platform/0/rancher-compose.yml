@@ -1,0 +1,53 @@
+.catalog:
+  name: zabbix-platform
+  version: latest
+  description: |
+     The zabbix platform for your container monitor.
+  questions:
+    - variable: "zabbixS_host"
+      description: "Running zabbix server host label"
+      label: "zabbix server"
+      default: "hostname=host1"
+      type: "string"
+      required: true
+    - variable: "zabbixC_host"
+      description: "Running zabbix client host label"
+      label: "zabbix client"
+      default: "hostname=host2"
+      type: "string"
+      required: true
+    - variable: "zabbix_serverip"
+      description: "connect to zabbix server IP address"
+      label: "connect to zabbix server IP"
+      type: "string"
+      required: true
+    - variable: "zabbix_agentip"
+      description: "connect to zabbix agent IP address"
+      label: "connect to zabbix agent IP"
+      type: "string"
+      required: true
+    - variable: "ui_port"
+      description: "zabbix web UI port"
+      label: "zabbix UI port"
+      default: 88
+      type: "int"
+      required: true
+    - variable: "zs_port"
+      description: "zabbix server port"
+      label: "zabbix server port"
+      default: 10051
+      type: "int"
+      required: true
+    - variable: "za_port"
+      description: "zabbix agent port"
+      label: "zabbix agent port"
+      default: 10050
+      type: "int"
+      required: true
+
+zabbix-db:
+  scale: 1
+zabbix-agent:
+  scale: 1
+zabbix:
+  scale: 1

@@ -1,8 +1,0 @@
-.catalog:
-  name: "Zabbix"
-  version: v1.0.0
-  description: "icshop  system"
-zabbix-db:
-  scale: 1
-zabbix:
-  scale: 1
