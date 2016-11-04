@@ -1,0 +1,12 @@
+busybox-syslog-test:
+  log_driver: syslog
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${rsyslog_host}
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  log_opt:
+    syslog-address: "tcp://${logstash_host_ip}:5000"
+    tag: '"{{.ImageName}}/{{.Name}}/{{.ID}}"'
+  image: ah.youruncloud.com/pub/busybox:v1.1
+  stdin_open: true

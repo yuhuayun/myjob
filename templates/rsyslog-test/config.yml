@@ -1,0 +1,5 @@
+name: rsyslog-test
+description: |
+  This is used busybox images create rsyslog logs output for ELK test.
+version: latest
+category: LEMP

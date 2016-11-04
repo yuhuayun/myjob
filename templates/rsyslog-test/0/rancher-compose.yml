@@ -1,0 +1,21 @@
+.catalog:
+  name: rsyslog-test
+  version: latest
+  description: |
+     The ELK platform rsyslog output for your container log elasticsearch.
+  questions:
+    - variable: "logstash_host_ip"
+      description: "Running logstash service  host IP address"
+      label: "logstash host IP"
+      default: "10.21.238.101"
+      type: "string"
+      required: true
+    - variable: "rsyslog_host"
+      description: "Running rsyslog container host label"
+      label: "connect to rsyslog server label"
+      default: "hostname=host2"
+      type: "string"
+      required: true
+
+busybox-syslog-test:
+  scale: 1
