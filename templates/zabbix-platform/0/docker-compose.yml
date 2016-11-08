@@ -23,6 +23,7 @@ zabbix-agent:
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.create_agent: 'true'
+    io.rancher.scheduler.global: 'true'
 #    io.rancher.scheduler.affinity:host_label: ${zabbixC_host}
   command:
   - bash
