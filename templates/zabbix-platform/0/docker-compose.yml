@@ -16,13 +16,13 @@ zabbix-db:
 zabbix-agent:
   ports:
   - ${za_port}:10050/tcp
-#  environment:
-#    ZA_SERVER: ${zabbix_serverip}
+  environment:
+    ZA_SERVER: ${zabbix_serverip}
 #    ZA_HOSTNAME: ${zabbix_agentip}
   log_driver: ''
   labels:
     io.rancher.container.pull_image: always
-    io.rancher.container.create_agent: 'true'
+#    io.rancher.container.create_agent: 'true'
     io.rancher.scheduler.global: 'true'
 #    io.rancher.scheduler.affinity:host_label: ${zabbixC_host}
   command:
