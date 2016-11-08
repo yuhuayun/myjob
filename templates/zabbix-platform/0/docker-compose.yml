@@ -16,8 +16,8 @@ zabbix-db:
 zabbix-agent:
   ports:
   - ${za_port}:10050/tcp
-  environment:
-    ZA_SERVER: ${zabbix_serverip}
+#  environment:
+#    ZA_SERVER: ${zabbix_serverip}
 #    ZA_HOSTNAME: ${zabbix_agentip}
   log_driver: ''
   labels:
