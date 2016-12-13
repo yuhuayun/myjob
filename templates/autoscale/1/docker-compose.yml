@@ -15,9 +15,11 @@ autoscale:
   labels:
     io.rancher.container.pull_image: always
   tty: true
+  volumes:
+  -v /root/autoscale.py:/root/autoscale.py
   command:
   - python
-  - /home/autoscale.py
+  - /root/autoscale.py
   log_opt: {}
   image: index.youruncloud.com/catalog/autoscale:v1.0.0
   stdin_open: true
