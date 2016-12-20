@@ -10,6 +10,12 @@
       default: "hostname=host1"
       type: "string"
       required: true
+    - variable: "zabbixC_host"
+      description: "Running zabbix agent host label"
+      label: "zabbix agent"
+      default: "hostname=host2"
+      type: "string"
+      required: true
     - variable: "zabbix_serverip"
       description: "connect to zabbix server IP address"
       label: "connect to zabbix server IP"
