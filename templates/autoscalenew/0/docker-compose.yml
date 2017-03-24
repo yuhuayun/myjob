@@ -13,7 +13,7 @@ autoscale:
     SCALE_MIN: ${SCALE_MIN}
     SCALE_MAX: ${SCALE_MAX}
   labels:
-    io.rancher.container.pull_image: always
+#   io.rancher.container.pull_image: always
     io.rancher.scheduler.affinity:host_label: hostname=host1
   tty: true
   command:
