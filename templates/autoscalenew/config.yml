@@ -1,0 +1,8 @@
+name: AutoScale
+description: |
+  autoscale service
+version: 1.0.1
+category: auto-scale
+maintainer: community
+license:
+
