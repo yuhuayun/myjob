@@ -14,11 +14,11 @@ autoscale:
     SCALE_MAX: ${SCALE_MAX}
   labels:
 #   io.rancher.container.pull_image: always
-    io.rancher.scheduler.affinity:host_label: hostname=host1
+#    io.rancher.scheduler.affinity:host_label: hostname=host1
   tty: true
   command:
   - python
   - /home/autoscale.py
-  image: 10.211.95.81:5002/migu/autoscale:v1.0.1
+  image: index.youruncloud.com/huayun.yu/autoscale:v2.0.0
   stdin_open: true
 
