@@ -1,6 +1,6 @@
 .catalog:
   name: AutoScale
-  version: 1.0.1
+  version: 2.0.0
   description: "Auto scale container when condition meet"
   questions:
     - variable: "URL"
@@ -32,7 +32,7 @@
       label: "Memory Threshold(MB)"
       required: true
       default: 1700
-      type: "int" 
+      type: "int"
     - variable: "SCALE_RULE"
       description: "Scale rule, OR AND"
       label: "Scale Rule"
@@ -77,6 +77,20 @@
       label: "Monitored Service"
       required: true
       default: migu/sjb
-      type: "service"      
+      type: "service"     
+    - variable: "CPU_SCALE_DOWN_PERCENT"
+      description: "CPU DOWN Threshold(%)"
+      label: "CPU DOWN Threshold(%)"
+      required: true
+      default: 30
+      type: "int"
+    - variable: "MEM_SCALE_DOWN_VALUE"
+      description: "Memory Threshold(MB)"
+      label: "Memory Threshold(MB)"
+      required: true
+      label: "Memory DOWN Threshold(MB)"
+      required: true
+      default: 600
+      type: "int" 
 autoscale:
   scale: 1
