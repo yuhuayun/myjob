@@ -20,5 +20,5 @@ autoscale:
   command:
   - python
   - /home/autoscale.py
-  image: index.youruncloud.com/huayun.yu/autoscale:v2.0.0
+  image: index.youruncloud.com/catalog/autoscale:v1.0.0
   stdin_open: true    
