@@ -1,7 +1,7 @@
 name: AutoScale
 description: |
   autoscale service
-version: 1.0.0
+version: 3.0.0
 category: auto-scale
 maintainer: community
 license:
