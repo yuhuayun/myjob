@@ -106,10 +106,10 @@
       default: migu/sjb
       type: "service"   
    
-    - variable: "imgurl"
-      label: "镜像仓库ip"
-      required: true
-      default: "192.168.100.179"
-      type: "string"
+#    - variable: "imgurl"
+#      label: "镜像仓库ip"
+#      required: true
+#      default: "192.168.100.179"
+#      type: "string"
 autoscale:
   scale: 1    
