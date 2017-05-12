@@ -1,0 +1,82 @@
+.catalog:
+  name: AutoScale
+  version: 1.0.1
+  description: "Auto scale container when condition meet"
+  questions:
+    - variable: "URL"
+      description: "Appsoar Server IP"
+      label: "Appsoar Server IP"
+      required: true
+      type: "string"
+      default: "10.211.95.77"
+    - variable: "ACCESS_KEY"
+      description: "API Access Key"
+      label: "API Access Key"
+      required: true
+      type: "string"
+      default: "2BF82BCD332B21A9EB9C"
+    - variable: "SECRET_KEY"
+      description: "API Secret Key"
+      label: "API Secret Key"
+      required: true
+      type: "string"
+      default: "RZTDR6arnYKDNqk8MXoaP3Cq8BrnZs49n4hcWRcw"
+    - variable: "CPU_SCALE_PERCENT"
+      description: "CPU Threshold(%)"
+      label: "CPU Threshold(%)"
+      required: true
+      default: 65
+      type: "int"
+    - variable: "MEMORY_SCALE_VALUE"
+      description: "Memory Threshold(MB)"
+      label: "Memory Threshold(MB)"
+      required: true
+      default: 1700
+      type: "int" 
+    - variable: "SCALE_RULE"
+      description: "Scale rule, OR AND"
+      label: "Scale Rule"
+      required: true
+      type: "enum"
+      default: OR
+      options: 
+        - OR
+        - AND
+    - variable: "SCAN_INTERVAL"
+      description: "Check Interval"
+      label: "Check interval (seconds)"
+      required: true
+      default: 2
+      type: "int"
+    - variable: "SCALE_MIN_MATCH_TIMES"
+      description: "How many time when the threshold reached"
+      label: "Threshold hit times"
+      required: true
+      default: 5
+      type: "int"
+    - variable: "SCALE_SIZE"
+      description: "Scale up batch size"
+      label: "Scale up batch size"
+      required: true
+      default: 6
+      type: "int"
+    - variable: "SCALE_MIN"
+      description: "Minimum number of containers"
+      label: "Min Container Number"
+      required: true
+      default: 4
+      type: "int"
+    - variable: "SCALE_MAX"
+      description: "Maximum number of container"
+      label: "Max Container Number"
+      required: true
+      default: 15
+      type: "int"
+    - variable: "MONITOR_SERVICE"
+      description: "Monitored Service"
+      label: "Monitored Service"
+      required: true
+      default: migu/sjb
+      type: "service"      
+autoscale:
+  scale: 1

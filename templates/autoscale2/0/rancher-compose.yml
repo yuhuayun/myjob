@@ -1,0 +1,59 @@
+.catalog:
+  name: AutoScale
+  version: 1.0.0
+  description: |
+      Auto scale container when condition meet
+  questions:
+    - variable: "URL"
+      label: "Appsoar Server IP"
+      required: true
+      type: "string"
+    - variable: "ACCESS_KEY"
+      label: "Appsoar Access Key"
+      required: true
+      type: "string"
+    - variable: "SECRET_KEY"
+      label: "Appsoar Secret Key"
+      required: true
+      type: "string"
+    - variable: "CPU_SCALE_PERCENT"
+      label: "Scale Up CPU Percent:"
+      required: true
+      default: 20
+      type: "int"
+    - variable: "MEMORY_SCALE_VALUE"
+      label: "Scale Up Memory Usage(MB)"
+      required: true
+      default: 560
+      type: "int" 
+    - variable: "SCALE_RULE"
+      label: "Scale Up Condition: Meet both cpu and memory condition or just one "
+      required: true
+      type: "enum"
+      default: OR
+      options: 
+        - OR
+        - AND
+    - variable: "SCAN_INTERVAL"
+      label: "Scan Interval"
+      required: true
+      default: 10
+      type: "int"
+    - variable: "SCALE_MIN_MATCH_TIMES"
+      label: "Meet Scale Up Condition Times:"
+      required: true
+      default: 2
+      type: "int"
+    - variable: "SCALE_SIZE"
+      label: "Scale Size"
+      required: true
+      default: 1
+      type: "int"
+    - variable: "MONITOR_SERVICE"
+      label: "Service need to be scaled up"
+      required: true
+      type: "service"
+      
+      
+autoscale:
+  scale: 1
