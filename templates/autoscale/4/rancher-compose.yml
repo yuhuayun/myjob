@@ -1,0 +1,115 @@
+.catalog:
+  name: autoscale
+  version: 4.0.0
+  description: |
+    autoscale.
+  questions:  
+
+    - variable: "URL"
+      label: "Appsoar Server IP"
+      description: "安装Appsoar/server的主机ip"
+      required: true
+      type: "string"
+      default: "192.168.100.179"
+
+    - variable: "ACCESS_KEY"
+      label: "API Access Key"
+      description: "API key 用户名"
+      required: true
+      type: "string"
+      default: "7BC5CAA11A6C3B4C7D21"
+
+    - variable: "SECRET_KEY"
+      label: "API Secret Key"
+      description: "API密码"
+      required: true
+      type: "string"
+      default: "2kKjrQqscUN8oGKtqx6oDLPNFRxSR8fTL2wMaHKu"
+
+    - variable: "CPU_SCALE_PERCENT"
+      label: "CPU UP Threshold(%)"
+      description: "CPU阈值扩容"
+      required: true
+      default: 65
+      type: "int"
+
+    - variable: "MEM_SCALE_VALUE"
+      label: "Memory UP Threshold(MB)"
+      description: "内存达到触发扩容"
+      required: true
+      default: 1700
+      type: "int" 
+
+    - variable: "SCALE_RULE"
+      label: "Scale rule, OR AND"
+      description: "触发扩容规则"
+      required: true
+      type: "enum"
+      default: OR
+      options: 
+        - OR
+        - AND
+
+    - variable: "SCAN_INTERVAL"
+      label: "Check Interval"
+      description: "多少秒检查一次是否满足扩容条件"
+      required: true
+      default: 2
+      type: "int"
+
+    - variable: "SCALE_MIN_MATCH_TIMES"
+      label: "How many time when the threshold reached"
+      description: "当连续满足触发扩容条件多少次再触发，避免抖动的问题"
+      required: true
+      default: 5
+      type: "int"
+
+    - variable: "SCALE_SIZE"
+      label: "Scale up batch size"
+      description: "每次扩容的时候新启动多少个容器"
+      required: true
+      default: 6
+      type: "int"
+
+    - variable: "SCALE_MIN"
+      label: "Minimum number of containers"
+      description: "最小保留多少容器"
+      required: true
+      default: 4
+      type: "int"
+
+    - variable: "SCALE_MAX"
+      label: "Maximum number of container"
+      description: "最大扩容到多少容器"
+      required: true
+      default: 15
+      type: "int"
+
+    - variable: "CPU_SCALE_DOWN_PERCENT"
+      label: "CPU DOWN Threshold(%)"
+      description: "cpu达到触发缩减"
+      required: true
+      default: 65
+      type: "int"
+
+    - variable: "MEM_SCALE_DOWN_VALUE"
+      label: "Memory DOWN Threshold(MB)"
+      description: "内存达到触发缩减"
+      required: true
+      default: 1700
+      type: "int"
+
+    - variable: "MONITOR_SERVICE"
+      label: "Monitored Service"
+      description: "被监控服务"
+      required: true
+      default: migu/sjb
+      type: "service"   
+   
+#    - variable: "imgurl"
+#      label: "镜像仓库ip"
+#      required: true
+#      default: "192.168.100.179"
+#      type: "string"
+autoscale:
+  scale: 1    

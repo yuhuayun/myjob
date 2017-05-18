@@ -1,0 +1,25 @@
+version: "2"
+services:
+  autoscale:
+    environment:
+      URL: "192.168.5.100"
+      USER_NAME: "78BF2DBC5CC73E68B601"
+      KEY: "CgJuDCgb6KhZedYcjQhb9Lw6DmfXa6KYiKf8gLL2"
+      STACK_SERVICE_NAME: "scheduler/scheduler"
+      SCALE_SIZE: 6
+      CPU_SCALE_PERCENT: 65
+      MEM_SCALE_VALUE: 1700
+      CPU_SCALE_DOWN_PERCENT: 30
+      MEM_SCALE_DOWN_VALUE: 600 
+      SCAN_INTERVAL: 2
+      SCALE_RULE: "OR"
+      SCALE_MIN_MATCH_TIME: 5
+      SCALE_MIN: 4
+      SCALE_MAX: 15
+    labels:
+  #    io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label: hostname=host1
+    tty: true
+    command: python /home/autoscale.py
+    image: 192.168.18.250:5002/ufleet-build/autoscale:v1.0.1
+    stdin_open: true
